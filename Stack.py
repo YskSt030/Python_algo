@@ -1,29 +1,52 @@
+import random
+
 class Stack:
-    def __init__(self):
-        self.datas = []
-
-    def add(self,num):
-        if num not in self.datas:
-            self.datas.append(num)
-            return True
-        else:
-            return False
-
-    def peek(self):
-        print(self.datas[-1])
-
-    def remove(self):
-        if len(self.datas)<=0:
-            return ("NONE")
-        else:
-            return self.datas.pop()
-
-
+	def __init__(self):
+		self.top = None
+		self.min = None
+	
+	def Push(self, num_):
+		if self.top is None:
+			self.top = StackNode(num_)
+			self.min = num_
+		else:
+			T = self.top
+			self.next = T
+			self.top = StackNode(num_)
+			if self.min > num_:
+				self.min = num_
+				
+	def Pop(self):
+		T = self.top
+		self.top = T.next
+		return T.data
+		
+	def Peek(self):
+		return self.top.data
+		
+	def IsEmpty(self):
+		return self.top is None
+	
+	# Question 3.3 of Cracking coding interview
+	# return the minumum number with O(1)
+	def Min(self):
+		return self.min
+		
+		
+class StackNode:
+	def __init__(self, num_):
+		self.data = num_
+		self.next = None
+		
+		
 if __name__ == '__main__':
-    datas = [1,2,3,6,5,4]
-    stack = Stack()
-    for i in range(len(datas)):
-        stack.add(datas[i])
-    stack.peek()
-    stack.remove()
-    stack.peek()
+	stack = Stack()
+	NUMOFLEN = 10
+	for i in range(NUMOFLEN):
+		num_ = random.randint(1, 100)
+		print('Input num: '+str(num_))
+		stack.Push(num_)
+		
+	print(stack.Peek())
+		
+

@@ -27,7 +27,7 @@ class Stack:
 	def IsEmpty(self):
 		return self.top is None
 	
-	# Question 3.3 of Cracking coding interview
+	# Question 3.2 of Cracking coding interview
 	# return the minumum number with O(1)
 	def Min(self):
 		return self.min
